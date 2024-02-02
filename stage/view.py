@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from stage.sidebar import get_filter
+from stage.stage import set_date_columns
 
 
 def filter_df(df: pd.DataFrame, columns_options: dict) -> pd.DataFrame:
@@ -17,10 +18,11 @@ def filter_df(df: pd.DataFrame, columns_options: dict) -> pd.DataFrame:
 
 def show_df(df):
     if isinstance(df, pd.DataFrame):
+        df = set_date_columns(df, ["Début", "Fin"])
         columns_options, submitted = get_filter(df)
         if submitted:
-            filtered_df = filter_df(df, columns_options)
-            st.dataframe(filtered_df, hide_index=True, use_container_width=True)
+            df = filter_df(df, columns_options)
+        st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def get_readme(path: str):
