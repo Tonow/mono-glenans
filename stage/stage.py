@@ -32,4 +32,5 @@ def set_date_columns(df: pd.DataFrame, columns_to_change: list) -> pd.DataFrame:
     for column in columns_to_change:
         df[column] = pd.to_datetime(df[column])
         df[column] = df[column].dt.strftime(date_format)
+        df[column] = pd.to_datetime(df[column]).dt.date
     return df
