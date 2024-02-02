@@ -28,7 +28,7 @@ def get_readme(path: str):
 
 
 def set_date_columns(df: pd.DataFrame, columns_to_change: list) -> pd.DataFrame:
-    date_format = "%d-%m-%Y"
+    date_format = "%Y-%m-%d"
     for column in columns_to_change:
         df[column] = pd.to_datetime(df[column])
         df[column] = df[column].dt.strftime(date_format)
