@@ -2,11 +2,23 @@ import streamlit as st
 import pandas as pd
 from stage.sidebar import get_filter
 from stage.stage import set_date_columns
+from datetime import date
 
 
 def filter_df(
-    df: pd.DataFrame, columns_options: dict, start_date, end_date
+    df: pd.DataFrame, columns_options: dict, start_date: date, end_date: date
 ) -> pd.DataFrame:
+    """Fliter the dataframe with input parameters.
+
+    Args:
+        df (pd.DataFrame): dataframe to filter.
+        columns_options (dict): multi options to filter match on columns.
+        start_date (date): first date on start date columns.
+        end_date (date): last date on end date columns.
+
+    Returns:
+        pd.DataFrame: filtered dataframe.
+    """
     # Initialize a boolean mask with all True values
     mask = pd.Series([True] * len(df), index=df.index)
 

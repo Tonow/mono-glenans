@@ -28,6 +28,15 @@ def get_readme(path: str):
 
 
 def set_date_columns(df: pd.DataFrame, columns_to_change: list) -> pd.DataFrame:
+    """Change string columns on python date.
+
+    Args:
+        df (pd.DataFrame): dataframe to format.
+        columns_to_change (list): list of columns to change.
+
+    Returns:
+        pd.DataFrame: dataframe with columns changed to date.
+    """
     date_format = "%Y-%m-%d"
     for column in columns_to_change:
         df[column] = pd.to_datetime(df[column])
