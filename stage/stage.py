@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
-def get_df():
+def get_df(sep=";"):
     # File upload widget
     uploaded_file = st.file_uploader(
         "Choisir le fichier CSV ⛵",
@@ -14,7 +14,7 @@ def get_df():
     # Check if a file is uploaded
     if uploaded_file is not None:
         # Read the CSV file into a Pandas DataFrame
-        df = pd.read_csv(uploaded_file, sep=";", index_col=False)
+        df = pd.read_csv(uploaded_file, sep=sep)
     return df
 
 
@@ -37,9 +37,10 @@ def set_date_columns(df: pd.DataFrame, columns_to_change: list) -> pd.DataFrame:
     Returns:
         pd.DataFrame: dataframe with columns changed to date.
     """
-    date_format = "%Y-%m-%d"
+    input_date_format = "%d/%m/%y"
+    output_date_format = "%Y/%m/%d"
     for column in columns_to_change:
-        df[column] = pd.to_datetime(df[column])
-        df[column] = df[column].dt.strftime(date_format)
+        df[column] = pd.to_datetime(df[column], format=input_date_format)
+        df[column] = df[column].dt.strftime(output_date_format)
         df[column] = pd.to_datetime(df[column]).dt.date
     return df
