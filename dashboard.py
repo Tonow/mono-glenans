@@ -1,7 +1,10 @@
 import streamlit as st
 from stage.stage import get_df, get_readme
-from stage.view import show_df
+from stage.view import show_df, show_map
 from config import STAGE_README_PATH
+
+st.session_state["center"] = [48.85889, 2.320041]
+st.session_state["zoom"] = 3
 
 st.set_page_config(
     page_title="Mono Glenans",
@@ -21,4 +24,5 @@ get_readme(STAGE_README_PATH)
 
 df = get_df()
 
-show_df(df)
+df = show_df(df)
+show_map(df)
