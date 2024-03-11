@@ -76,7 +76,7 @@ def show_map(df):
                 folium.Marker(
                     [lat, lon],
                     popup=popup,
-                    icon=folium.Icon(color=color),
+                    icon=folium.Icon(icon_color=color),
                 ).add_to(marker_cluster)
                 if base not in bases:
                     bases.append(base)
