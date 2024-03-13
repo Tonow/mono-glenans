@@ -70,9 +70,9 @@ def show_map(df):
             base = BASE.get(row["Base"])
             color = ICON_CONFIG["color"].get(str(row["Niveau"]))
             popup = f'{row["Filière"]}\n{row["Stage"]}\nNiv : {row["Niveau"]}'
-            lat = base.get("lat")
-            lon = base.get("lon")
             if base:
+                lat = base.get("lat")
+                lon = base.get("lon")
                 folium.Marker(
                     [lat, lon],
                     popup=popup,
