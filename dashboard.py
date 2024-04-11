@@ -2,6 +2,7 @@ import streamlit as st
 from stage.stage import get_df, get_readme
 from stage.view import show_df, show_map
 from config import STAGE_README_PATH, FOOTER_FILE_NAME
+import pandas as pd
 
 st.session_state["center"] = [48.85889, 2.320041]
 st.session_state["zoom"] = 3
@@ -24,7 +25,8 @@ get_readme(STAGE_README_PATH)
 
 df = get_df()
 
-df = show_df(df)
-show_map(df)
+if isinstance(df, pd.DataFrame):
+    df = show_df(df)
+    show_map(df)
 
 get_readme(STAGE_README_PATH, FOOTER_FILE_NAME)
