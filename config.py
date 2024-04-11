@@ -1,1 +1,2 @@
 STAGE_README_PATH = "stage"
+FOOTER_FILE_NAME = "Footer.md"

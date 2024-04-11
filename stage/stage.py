@@ -18,9 +18,9 @@ def get_df(sep=";"):
     return df
 
 
-def get_readme(path: str):
+def get_readme(path: str, filename: str = "README.md"):
     # Read content from README.md
-    with open(f"{path}/README.md", "r", encoding="utf-8") as readme_file:
+    with open(f"{path}/{filename}", "r", encoding="utf-8") as readme_file:
         readme_content = readme_file.read()
 
     # Display the content using st.markdown()
